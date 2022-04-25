@@ -436,7 +436,13 @@ end
 
 -- make the laptop usable
 QBCore.Functions.CreateUseableItem('laptop' , function(source, item)
-   TriggerClientEvent('jl-carboost:client:openLaptop', source)
+   local src = source
+   local Player = QBCore.Functions.GetPlayer(src)
+   if (Player.PlayerData.job.name == "police") then
+      TriggerClientEvent('QBCore:Notify', src, "Your not a Cop! WTF?", "primary")
+   else
+      TriggerClientEvent('jl-carboost:client:openLaptop', source)
+   end
 end)
 
 QBCore.Functions.CreateUseableItem('hacking_device',  function (source, item)
